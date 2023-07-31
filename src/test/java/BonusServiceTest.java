@@ -34,4 +34,53 @@ public class BonusServiceTest {
         // производим проверку (сравниваем ожидаемый и фактический):
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void shouldCalculateForNotRegisteredUnderLimit() {
+        BonusService service = new BonusService();
+
+        //подготавливаем данные:
+        long amount = 1500;
+        boolean registered = false;
+        long expected = 15;
+
+        //вызываем целевой метод:
+        long actual = service.calculate(amount, registered);
+
+        //производим проверку (сравниваем ожидаемый и фактический):
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculateForRegisteredAndAmountZero() {
+        BonusService service = new BonusService();
+
+        //подготавливаем данные:
+        long amount = 0;
+        boolean registered = true;
+        long expected = 0;
+
+        //вызываем целевой метод
+        long actual = service.calculate(amount, registered);
+
+        //производим проверку (сравниваем ожидаемый и фактический)
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculateForNotRegisteredAndAmountZero() {
+        BonusService service = new BonusService();
+
+        //подготавливаем данные:
+        long amount = 0;
+        boolean registered = false;
+        long expected = 0;
+
+        //вызываем целевой метод
+        long actual = service.calculate(amount, registered);
+
+        //производим проверку (сравниваем ожидаемый и фактический)
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
